@@ -29,10 +29,10 @@ function KareninAlani(kenaruzunlugu){
 			4. Hesaplanan çemberin çevresi döndürülecektir.
 		*/
 
-function CemberinCevresi(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinCevresi(yaricap1){
+	return 2*pi*yaricap1;
 }
-
+console.log(CemberinCevresi);
 
 /* (Oto test yok) Yukarıdaki CemberinCevresi fonksiyonunu yarıçap = 5 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -47,10 +47,10 @@ function CemberinCevresi(/* kodlar buraya */){
 			4. Hesaplanan çemberin alanı döndürülecektir.
 		*/
 		
-function CemberinAlani(/* kodlar buraya */){
-	/* kodlar buraya */
+function CemberinAlani(yaricap2,pi){
+	return pi*(Math.pow(yaricap2,2));
 }
-
+console.log(CemberinAlani);
 
 /* (Oto test yok) Yukarıdaki CemberinAlani fonksiyonunu yarıçap = 15 vererek aşağıda çalıştırıp, sonucu konsolda gözlemleyin (console.log)  */
 
@@ -63,7 +63,7 @@ function CemberinAlani(/* kodlar buraya */){
 			3c. `ucetambolunenler` dizisindeki sayıların toplamını .reduce metoduyla bulup, sonucu `ucebolunenlerintoplami` değişkenine yazdırın (.reduce metodunu kullanın)
 			3d. `besyuzdenkucuksayilar` adında bir dizi oluşturarak, sayilar dizisinin içindeki 500'den küçük sayıları bu diziye atayın (.filter metodunu kullanın)
 			3e. besyuzdenkucuksayilar dizisindeki sayıları küçükten büyüğe sıralayıp `siralisayilar` adındaki bir diziye aktarın (.sort metodunu kullanın)
-			3f. `tekraredensayilar` adında bir dizi oluşturun. sayilar dizisi içerisindeki bazı sayılar birden fazla kere yazılmış. sayilar dizisi içerisinde birden fazla kez yazılmış sayıları tespit ederek kaç kere tekrar edildiğini belirten bir string oluşturulup `tekraredensayilar` dizisine aktarılmasını istiyoruz. Örnek string: "{sayı} sayısı {tekrarSayisi} kere tekrar edilmiştir"
+			3f. `tekrastring oredensayilar` adında bir dizi oluşturun. sayilar dizisi içerisindeki bazı sayılar birden fazla kere yazılmış. sayilar dizisi içerisinde birden fazla kez yazılmış sayıları tespit ederek kaç kere tekrar edildiğini belirten bir luşturulup `tekraredensayilar` dizisine aktarılmasını istiyoruz. Örnek string: "{sayı} sayısı {tekrarSayisi} kere tekrar edilmiştir"
 			ÖRNEK: sayilar dizisi içerisinde 45 sayısı 3 kere yazılmış. "45 sayısı 3 tekrar edilmiştir" stringini `tekraredensayilar` dizisine aktaracağız.
 			💡 İPUCU: Tekrar edilen sayıları ve kaç kere tekrar edildiğini kaydetmek için bir nesne tanımlamalısınız, bu görevi yapabilmek için en az 2 kere döngü yazmalısınız. Birinci döngüde hangi sayının kaç kere tekrar edildiğini tespit edip, 2. döngüde stringi oluşturup verilen diziye aktarmalısınız.
 	*/
@@ -77,37 +77,93 @@ function CemberinAlani(/* kodlar buraya */){
 	
 	//3a çözümü
 
-	/* kodlar buraya */
-	
+	var enkucuk = sayilar[0];
+	for (let i = 0; i < sayilar.length; i++) {
+		if (sayilar[i] < enkucuk) {
+			enkucuk = sayilar[i];
+		}
+		
+	}
+		
+	var enbuyuk=sayilar[0];
+	for (let i=0 ; i<sayilar.length ; i++){
+		if (sayilar[i] > enbuyuk){
+			enbuyuk=sayilar[i];
+		}
+	}
 	
 	
 	// 3b çözümü:
+	
+var ucetambolunenler = [];
 
-	/* kodlar buraya */
+sayilar.forEach(function(x) {
+  if (x % 3 === 0) {
+    ucetambolunenler.push(x);
+  }
+});
+
+console.log(ucetambolunenler);
+
+
+	
 		
 		
 		
 	//3c çözümü:
 	
-	/* kodlar buraya */
+	
+
+
+var ucebolunenlerintoplami = sayilar.reduce(function(accumulator, currentValue) {
+  if (currentValue % 3 === 0) {
+    return accumulator + currentValue;
+  } else {
+    return accumulator;
+  }
+}, 0);
+
+console.log("3'e bölünen sayıların toplamı:", ucebolunenlerintoplami);
+
 
 	
 	
 	//3d çözümü
 	
-	/* kodlar buraya */
+	 
+var besyuzdenkucuksayilar=sayilar.filter(function(sayi){
+		return sayi<500
+	})
+	console.log(besyuzdenkucuksayilar);
+
 
 
 
 	//3e çözümü
 
-	/* kodlar buraya */
+	var siralisayilar=(besyuzdenkucuksayilar.sort(function(a,b){
+		return a-b
+	}));
+	console.log(siralisayilar);
+
 	
 	
 	//3f çözümü
 	
-	/* kodlar buraya */
+	var tekraredensayilar= {};
+	sayilar.forEach(function(sayi) {
+		if (tekraredensayilar[sayi] === undefined) {
+		  tekraredensayilar[sayi] = 1;
+		} else {
+		  tekraredensayilar[sayi]++;
+		}
+	  });
 
+	  for (const sayi in tekraredensayilar) {
+		if (tekraredensayilar[sayi] > 1) {
+		  console.log(`${sayi} sayısı ${tekraredensayilar[sayi]} kere tekrar edilmiştir`);
+		}
+	  }
 
 
 
